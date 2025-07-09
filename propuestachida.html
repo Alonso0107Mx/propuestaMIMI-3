@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Quieres ser mi novia?</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: url('sakura.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      top: 10%;
+      max-width: 600px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e91e63;
+    }
+
+    .carta {
+      background: #fff0f5;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      text-align: left;
+      font-size: 18px;
+      color: #333;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #respuestaFinal {
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 20px;
+      color: #e91e63;
+    }
+
+    .petal {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('petalos.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      z-index: 1;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body onclick="playMusic()">
+
+  <audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_d8f8274702.mp3?filename=warm-spring-145979.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>🌸 Hola... Tengo algo que decirte 🌸</h1>
+
+    <div class="carta">
+      <p>
+        Durante todo este tiempo contigo, la verdad es que he ido descubriendo muchísimas cosas de ti, y para ser sincero, me he dado cuenta de que entre más te conozco, más quiero que seas tú la mujer con la que quiero estar en forma de una novia. <br><br>
+        Cada día me despierto más convencido de que te elijo a ti, cada día mi corazón se siente más enamorado de ti, y eso es algo inevitable. <br><br>
+        Mejoras mi vida, me inspiras a ser mejor. <br><br>
+        Definitivamente es contigo, hagamos que esto funcione. <br><br>
+        <strong>¿Te gustaría que esto escalara a algo más y fuéramos novios?</strong>
+      </p>
+    </div>
+
+    <button class="yes" onclick="responder('La respuesta es: SIIIIII 😭')">La respuesta es SIII</button>
+    <button class="no" onclick="responder('La respuesta es: NOOOO 😭')">La respuesta es NOOO</button>
+
+    <div id="respuestaFinal"></div>
+  </div>
+
+  <script>
+    function playMusic() {
+      const music = document.getElementById("musica");
+      music.play().catch(error => {
+        console.log("Reproducción bloqueada por el navegador:", error);
+      });
+    }
+
+    function responder(texto) {
+      document.getElementById("respuestaFinal").textContent = texto;
+    }
+
+    const cantidadPetalos = 20;
+    for (let i = 0; i < cantidadPetalos; i++) {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = `${Math.random() * 100}vw`;
+      petal.style.animationDuration = `${6 + Math.random() * 4}s`;
+      petal.style.animationDelay = `${Math.random() * 4}s`;
+      document.body.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
